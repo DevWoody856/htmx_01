@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+    <main class="main">
+        <h1>Modal with HTMX and HyperScript</h1>
+        <div class="main__button">
+            <button hx-get="{% url 'uiapp:display-modal' %}" hx-target="body" hx-swap="beforeend" class="main__open-button">Open a Modal</button>
+        </div>
+
+        {% include 'uiapp/comment-list.html' %}
+    </main>
+
+{% endblock %}
+

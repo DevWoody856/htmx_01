@@ -1,0 +1,17 @@
+<div id="list" class="list" hx-get="{% url 'uiapp:list-comment' %}" hx-trigger="newList delay:2s from:body">
+    {% for list in lists|dictsortreversed:"id" %}
+    <div class="list__item">
+           <span class="list__email">{{ list.email }}</span>
+           <span class="list__comment">{{ list.comment }}</span>
+           <input type="button"
+                  value="Delete"
+                  hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                  hx-post="{% url 'uiapp:delete-comment' pk=list.id %}"
+                  hx-trigger="click"
+                  hx-target="#list"
+                  hx-swap="outerHTML"
+                  class="list__button"
+           ></input>
+    </div>
+    {% endfor %}
+</div>

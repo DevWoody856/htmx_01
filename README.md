@@ -1,0 +1,1 @@
+This repository is for <a href="https://rx-36.life/post/create-a-modal-window-with-django-htmx-and-hyperscript/" target="_blank"><span class="link">this blog post</span></a>.<br> I made a small experimental modal window application with HTMX and Django.

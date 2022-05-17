@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  backend:
+    container_name: htmxui_01_220503
+    build: .
+    volumes:
+      - .:/htmxui_01_220503
+    ports:
+      - 8000:8000
+    depends_on:
+      - db_htmxui_01_220503
+
+  db_htmxui_01_220503:
+    container_name: db_htmxui_01_220503
+    image: postgres
+    restart: always
+    volumes:
+      - .dbdata:/var/lib/db_htmxui_01_220503
+    ports:
+      - 5451:5432
+
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}

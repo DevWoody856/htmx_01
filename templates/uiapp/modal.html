@@ -1,0 +1,22 @@
+{% load widget_tweaks %}
+
+<div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
+	<div class="modal-underlay" _="on click trigger closeModal"></div>
+	<div class="modal-content">
+		<h1>Modal Dialog</h1>
+        <form method="POST" action="{% url 'uiapp:display-modal' %}" class="dialog">
+            {% csrf_token %}
+            <div id="email-error"></div>
+            <label>{{ form.email.label_tag }}</label>
+            {% render_field form.email class="form__email" %}
+            <label>{{ form.comment.label_tag }}</label>
+            {% render_field form.comment hx-post="/check_comment/" hx-swap="outerHTML"  hx-trigger="keyup" hx-target="#modal_field" class="form__comment" %}
+             <div id="modal_field">Count:</div>
+            <div class="form__button">
+		        <input type="button" value="Cancel" _="on click trigger closeModal"></input>
+                <input type="button" value="Submit" hx-post="{% url 'uiapp:display-modal' %}" hx-trigger="click" hx-target="#email-error" hx-swap="innerHTML"></input>
+            </div>
+        </form>
+	</div>
+</div>
+<script src="https://unpkg.com/hyperscript.org@0.9.5"></script>
